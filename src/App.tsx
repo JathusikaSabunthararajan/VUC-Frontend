@@ -5,8 +5,9 @@ import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
 import AcademicNotices from './pages/AcademicNotices';
 import WelfareNotices from './pages/WelfareNotices';
-import StudentServices from './pages/StudentServices';
+import StudentServices from './pages/student-services/StudentServices';
 import ClubsOrganizations from './pages/ClubsOrganizations';
+import SportsNotices from './pages/SportsNotices'; // ✅ New import
 import Login from './pages/Login';
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
         return <StudentServices />;
       case 'clubs':
         return <ClubsOrganizations />;
+      case 'sports':           // ✅ New case
+        return <SportsNotices />;
       default:
         return <AcademicNotices />;
     }
@@ -56,15 +59,17 @@ function App() {
   const getPageTitle = () => {
     switch (activeTab) {
       case 'dashboard':
-        return 'Dashboard';
+        return 'General';
       case 'academic':
-        return 'Academic Notices';
+        return 'Academic';
       case 'welfare':
-        return 'Welfare Notices';
+        return 'Welfare';
       case 'student':
         return 'Student Services';
       case 'clubs':
-        return 'Clubs & Organizations';
+        return 'Societies';
+      case 'sports':          // ✅ New title
+        return 'Sports';
       default:
         return 'VUC Portal';
     }
@@ -84,7 +89,7 @@ function App() {
         <Header
           title={getPageTitle()}
           userInfo={userInfo}
-          //onLogout={handleLogout} // ✅ Optional: header logout
+          // onLogout={handleLogout} // Optional: header logout
         />
         <main className="flex-1 overflow-y-auto">
           {renderContent()}
